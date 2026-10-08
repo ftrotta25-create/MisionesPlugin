@@ -1,0 +1,25 @@
+# Nombre del NPC (solo se usa en textos).
+npc: "Peladito Botón"
+
+# Si es true, romper bloques / matar mobs en creativo NO suma progreso.
+ignorarCreativo: true
+
+# Si es true, se avisa por chat a los jugadores cuando les asignás misiones.
+avisarAlAsignar: true
+
+menu:
+  tituloJugador: "&6Peladito Botón &8- &7Misiones"
+  tituloAsignarTodos: "&5Misiones para TODOS"
+  tituloAsignarJugador: "&5Misiones para &d%jugador%"
+
+# Mensajes (se pueden usar colores con &). Dejá uno vacío para desactivarlo.
+mensajes:
+  bienvenida: "&6[Peladito Botón] &e¡Buenas, &f%jugador%&e! Soy el alcalde de Villa Pelado. Mirá en qué te puedo dar una mano:"
+  misionCompletada: "&a¡Completaste la misión &e%mision%&a! Volvé con &6Peladito Botón &apara reclamar tu recompensa."
+  recompensaReclamada: "&6[Peladito Botón] &e¡Buen laburo, &f%jugador%&e! Acá tenés lo tuyo."
+  misionNueva: "&6[Peladito Botón] &e¡Tengo una misión nueva para vos: &f%mision%&e! Pasá a verme."
+  misionesNuevas: "&6[Peladito Botón] &e¡Tengo misiones nuevas para vos! Pasá a verme."
+  misionNuevaTodos: "&6[Peladito Botón] &e¡Hay una misión nueva para todos: &f%mision%&e! Pasá a verme a Villa Pelado."
+  misionesNuevasTodos: "&6[Peladito Botón] &e¡Hay misiones nuevas para todos! Pasá a verme a Villa Pelado."
+  incompleta: "&cTodavía no completaste esa misión."
+  noDisponible: "&cEsa recompensa no está disponible ahora mismo. Avisale a un admin."

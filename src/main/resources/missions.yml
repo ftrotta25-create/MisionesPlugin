@@ -1,0 +1,96 @@
+# ============================================================
+#  MISIONES DE PELADITO BOTÓN
+# ============================================================
+# Cada misión tiene un ID único (la clave; sin puntos ni espacios).
+# Después de editar este archivo, usá /mision reload.
+#
+# nombre:         título (acepta colores con &)
+# icono:          material del ícono en el menú
+# descripcion:    lista de líneas
+# tipo:           BREAK   -> romper bloques
+#                 KILL    -> matar mobs
+#                 DELIVER -> entregar items (se sacan del inventario al reclamar)
+# objetivo:       uno o varios nombres separados por coma
+#                 (BREAK/DELIVER: materiales, ej OAK_LOG | KILL: tipos de mob, ej ZOMBIE)
+# textoObjetivo:  (opcional) texto a mostrar en el menú en vez del automático
+# cantidad:       cuántos hacen falta
+# filtroNombre:   (opcional, solo KILL) el mob tiene que tener este texto en el nombre
+#                 (ej "Jefe Cabra" para contar solo a ese boss)
+# recompensas:    lista, cada línea con un prefijo:
+#     item:MATERIAL:CANTIDAD   -> item vanilla, ej  item:BREAD:5
+#     especial:NOMBRE          -> item custom de tus otros plugins:
+#                                 libro_florencia, cuerno_cabra, yelmo_testarazo,
+#                                 pava, mate_vacio, sudario_aparecido, vestigio_aparecido
+#     comando:COMANDO          -> comando de consola, %jugador% = nombre del jugador
+#                                 ej  comando:eco give %jugador% 100
+# textoRecompensas: (opcional) lo que se muestra en el menú, útil si usás comandos
+# ============================================================
+misiones:
+
+  primeros_pasos:
+    nombre: "&aPrimeros Pasos"
+    icono: OAK_LOG
+    descripcion:
+      - "Peladito necesita madera para"
+      - "arreglar el cartel de la entrada."
+    tipo: BREAK
+    objetivo: "OAK_LOG,BIRCH_LOG,SPRUCE_LOG,JUNGLE_LOG,ACACIA_LOG,DARK_OAK_LOG,MANGROVE_LOG,CHERRY_LOG"
+    textoObjetivo: "Romper 16 troncos de cualquier tipo"
+    cantidad: 16
+    recompensas:
+      - "item:BREAD:6"
+      - "item:TORCH:16"
+
+  minero_del_pueblo:
+    nombre: "&bMinero del Pueblo"
+    icono: IRON_PICKAXE
+    descripcion:
+      - "El pueblo necesita carbón y hierro"
+      - "para pasar el invierno."
+    tipo: BREAK
+    objetivo: "COAL_ORE,DEEPSLATE_COAL_ORE,IRON_ORE,DEEPSLATE_IRON_ORE"
+    textoObjetivo: "Romper 20 minerales de carbón o hierro"
+    cantidad: 20
+    recompensas:
+      - "item:IRON_INGOT:6"
+      - "item:COOKED_BEEF:8"
+
+  cazador_novato:
+    nombre: "&cCazador Novato"
+    icono: IRON_SWORD
+    descripcion:
+      - "Los bichos de noche no dejan"
+      - "dormir a nadie en Villa Pelado."
+    tipo: KILL
+    objetivo: "ZOMBIE,SKELETON,SPIDER,CREEPER"
+    textoObjetivo: "Matar 12 zombies, esqueletos, arañas o creepers"
+    cantidad: 12
+    recompensas:
+      - "item:ARROW:24"
+      - "item:GOLDEN_CARROT:4"
+
+  la_cosecha:
+    nombre: "&eLa Cosecha"
+    icono: WHEAT
+    descripcion:
+      - "Peladito quiere hacer pan para"
+      - "todo el pueblo. ¡Traele trigo!"
+    tipo: DELIVER
+    objetivo: "WHEAT"
+    cantidad: 24
+    recompensas:
+      - "item:EMERALD:2"
+      - "item:BREAD:6"
+
+  el_mate_del_alcalde:
+    nombre: "&2El Mate del Alcalde"
+    icono: FERN
+    descripcion:
+      - "Peladito se quedó sin cedrón."
+      - "Traele helechos y te prepara algo."
+    tipo: DELIVER
+    objetivo: "FERN"
+    cantidad: 4
+    recompensas:
+      - "especial:mate_vacio"
+      - "item:GOLD_INGOT:2"

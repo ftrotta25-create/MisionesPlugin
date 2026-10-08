@@ -1,0 +1,21 @@
+name: MisionesPlugin
+version: 1.0.0
+main: com.franchee.misiones.MisionesPlugin
+api-version: '1.20'
+author: Franchee
+description: Misiones de Peladito Botón, alcalde de Villa Pelado. Menús para asignar misiones a todos o a un jugador.
+softdepend: [FancyNpcs, LibroFlorenciaPlugin, JefeCabraPlugin, MateSystemPlugin, EventoPlugin]
+
+commands:
+  mision:
+    description: Menú de administración de misiones
+    usage: /mision <todos|jugador|reload>
+    permission: misiones.admin
+  misiones:
+    description: Abre tu menú de misiones
+    usage: /misiones
+
+permissions:
+  misiones.admin:
+    description: Asignar misiones a jugadores
+    default: op
