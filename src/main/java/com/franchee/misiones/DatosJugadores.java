@@ -1,5 +1,6 @@
 package com.franchee.misiones;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -97,6 +98,28 @@ public class DatosJugadores {
         List<String> lista = new ArrayList<>(yaml.getStringList(ruta(jugador, "reclamadas")));
         if (!lista.contains(id)) lista.add(id);
         yaml.set(ruta(jugador, "reclamadas"), lista);
+        sucio = true;
+    }
+
+    // ---------------- Limpieza al borrar una mision ----------------
+
+    /** Saca la mision de las asignaciones, el progreso y las reclamadas de todos. */
+    public void olvidarMision(String id) {
+        setGlobal(id, false);
+
+        ConfigurationSection jugadores = yaml.getConfigurationSection("jugadores");
+        if (jugadores != null) {
+            for (String uuid : jugadores.getKeys(false)) {
+                for (String campo : new String[]{"asignadas", "reclamadas"}) {
+                    String ruta = "jugadores." + uuid + "." + campo;
+                    List<String> lista = new ArrayList<>(yaml.getStringList(ruta));
+                    if (lista.remove(id)) {
+                        yaml.set(ruta, lista);
+                    }
+                }
+                yaml.set("jugadores." + uuid + ".progreso." + id, null);
+            }
+        }
         sucio = true;
     }
 

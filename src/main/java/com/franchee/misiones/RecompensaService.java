@@ -48,6 +48,15 @@ public class RecompensaService {
             "vestigio_aparecido", "Vestigio del Aparecido"
     );
 
+    /** Los tokens de "especial:" en orden estable (para el editor). */
+    public static final List<String> TOKENS = List.of(
+            "libro_florencia", "cuerno_cabra", "yelmo_testarazo", "pava",
+            "mate_vacio", "sudario_aparecido", "vestigio_aparecido");
+
+    public static String nombreDe(String token) {
+        return NOMBRES_ESPECIALES.getOrDefault(token.toLowerCase(Locale.ROOT), token);
+    }
+
     private final MisionesPlugin plugin;
 
     public RecompensaService(MisionesPlugin plugin) {

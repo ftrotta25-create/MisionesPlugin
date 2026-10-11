@@ -2,7 +2,8 @@
 #  MISIONES DE PELADITO BOTÓN
 # ============================================================
 # Cada misión tiene un ID único (la clave; sin puntos ni espacios).
-# Después de editar este archivo, usá /mision reload.
+# Podés editarlas desde el juego con /mision editor, o a mano acá (y después /mision reload).
+# Ojo: cada cambio hecho desde el editor deja una copia en missions.yml.bak.
 #
 # nombre:         título (acepta colores con &)
 # icono:          material del ícono en el menú

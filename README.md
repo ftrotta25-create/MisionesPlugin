@@ -10,6 +10,7 @@ jugador (o todos) y todo se maneja con menús.
 |---|---|---|
 | `/mision todos` | admin (`misiones.admin`) | Menú para asignar/quitar misiones a **TODOS** los jugadores (incluso a los que entren después) |
 | `/mision <jugador>` | admin | Menú para asignar/quitar misiones a **un jugador** (aunque esté offline, si ya entró alguna vez) |
+| `/mision editor` | admin | **Editor de misiones dentro del juego** (crear, editar y borrar misiones con menús) |
 | `/mision reload` | admin | Recarga `config.yml` y `missions.yml` |
 | `/misiones` | todos | Abre el menú de misiones del jugador (lo usa el NPC) |
 
@@ -35,6 +36,33 @@ Parado en Villa Pelado:
 /npc action peladito_boton any_click add player_command misiones
 ```
 (Si algún subcomando cambió en tu versión, `/npc help` lista los actuales. También podés ponerle skin con `/npc skin`.)
+
+## Editor de misiones (`/mision editor`)
+
+Crear y editar misiones sin tocar archivos. Los botones se manejan con click; los textos se escriben por el
+chat (con `cancelar` salís del paso). Cada cambio se guarda al toque en `missions.yml`, y antes de guardar
+deja una copia en `missions.yml.bak`.
+
+1. **Lista de misiones:** click izquierdo en una misión = editarla, click derecho = eliminarla (pide confirmación).
+   El botón verde **+ Crear nueva misión** te pide un ID por chat y arranca con valores por defecto válidos.
+2. **Editor de una misión**, un botón por campo:
+   - **Nombre:** se escribe por chat (acepta colores con `&`).
+   - **Ícono:** sostené un item en la mano y hacé click.
+   - **Descripción:** click izquierdo agrega una línea, derecho quita la última.
+   - **Tipo:** click para rotar entre BREAK / KILL / DELIVER (al cambiarlo se resetea el objetivo a uno válido).
+   - **Objetivo:** click izquierdo escribe la lista (separada por coma, se valida); click derecho agrega el
+     item/bloque que tenés en la mano.
+   - **Cantidad:** izquierdo +1, derecho -1, Shift ±10.
+   - **Texto del objetivo / Filtro de nombre (solo KILL) / Texto de recompensas:** opcionales, click izquierdo
+     para escribirlos, derecho para quitarlos.
+   - **Recompensas:** abre un submenú.
+3. **Submenú de recompensas:** agregar el **item de tu mano** (con su cantidad), un **item especial** de tus
+   otros plugins (muestra si está disponible ahora), o un **comando**. Sobre cada recompensa: izquierdo/derecho
+   cambian la cantidad (+1/-1, con Shift ±10) y **Q (soltar)** la quita.
+
+Al eliminar una misión también se borran sus asignaciones y el progreso de todos los jugadores.
+Las misiones de `missions.yml` que tengan errores (objetivos inválidos, etc.) se saltean con un warning en
+consola y no aparecen en el editor hasta que las corrijas a mano.
 
 ## Misiones (`missions.yml`)
 
@@ -77,4 +105,3 @@ y para `sudario_aparecido`/`vestigio_aparecido` el `EventoPlugin.jar` actualizad
 ## Limitaciones conocidas
 
 - No hay anti-farmeo en `BREAK` (colocar y romper el mismo bloque suma).
-- Las misiones se crean editando `missions.yml` (no hay editor dentro del juego todavía).

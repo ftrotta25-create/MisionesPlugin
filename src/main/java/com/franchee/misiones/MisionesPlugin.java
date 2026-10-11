@@ -1,7 +1,9 @@
 package com.franchee.misiones;
 
+import com.franchee.misiones.listeners.EditorListener;
 import com.franchee.misiones.listeners.MenuListener;
 import com.franchee.misiones.listeners.ProgresoListener;
+import com.franchee.misiones.menu.EditorMenuManager;
 import com.franchee.misiones.menu.MenuManager;
 import com.franchee.misiones.util.Texto;
 import org.bukkit.Bukkit;
@@ -22,6 +24,7 @@ public class MisionesPlugin extends JavaPlugin {
     private RecompensaService recompensas;
     private ProgresoService progreso;
     private MenuManager menus;
+    private EditorMenuManager editor;
 
     @Override
     public void onEnable() {
@@ -33,9 +36,11 @@ public class MisionesPlugin extends JavaPlugin {
         recompensas = new RecompensaService(this);
         progreso = new ProgresoService(this);
         menus = new MenuManager(this);
+        editor = new EditorMenuManager(this);
 
         getServer().getPluginManager().registerEvents(new MenuListener(this), this);
         getServer().getPluginManager().registerEvents(new ProgresoListener(this), this);
+        getServer().getPluginManager().registerEvents(new EditorListener(this), this);
 
         // Guarda datos.yml cada 60s si hubo cambios (y al apagar).
         getServer().getScheduler().runTaskTimer(this, () -> datos.guardar(), 1200L, 1200L);
@@ -67,6 +72,10 @@ public class MisionesPlugin extends JavaPlugin {
 
     public MenuManager getMenus() {
         return menus;
+    }
+
+    public EditorMenuManager getEditor() {
+        return editor;
     }
 
     // ---------------- Mensajes ----------------
@@ -108,7 +117,7 @@ public class MisionesPlugin extends JavaPlugin {
                 return true;
             }
             if (args.length < 1) {
-                sender.sendMessage("Uso: /mision <todos|nombreDelJugador|reload>");
+                sender.sendMessage("Uso: /mision <todos|editor|nombreDelJugador|reload>");
                 return true;
             }
 
@@ -128,6 +137,11 @@ public class MisionesPlugin extends JavaPlugin {
 
             if (arg.equalsIgnoreCase("todos")) {
                 menus.abrirAsignarGlobal(admin);
+                return true;
+            }
+
+            if (arg.equalsIgnoreCase("editor")) {
+                editor.abrirLista(admin);
                 return true;
             }
 
@@ -163,7 +177,7 @@ public class MisionesPlugin extends JavaPlugin {
         }
         if (args.length != 1) return List.of();
 
-        List<String> opciones = new ArrayList<>(List.of("todos", "reload"));
+        List<String> opciones = new ArrayList<>(List.of("todos", "editor", "reload"));
         for (Player p : Bukkit.getOnlinePlayers()) opciones.add(p.getName());
 
         String escrito = args[0].toLowerCase(Locale.ROOT);

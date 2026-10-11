@@ -9,7 +9,7 @@ softdepend: [FancyNpcs, LibroFlorenciaPlugin, JefeCabraPlugin, MateSystemPlugin,
 commands:
   mision:
     description: Menú de administración de misiones
-    usage: /mision <todos|jugador|reload>
+    usage: /mision <todos|editor|jugador|reload>
     permission: misiones.admin
   misiones:
     description: Abre tu menú de misiones
