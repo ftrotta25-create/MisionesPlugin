@@ -49,7 +49,7 @@ public class EditorListener implements Listener {
     private void pedirTexto(Player admin, String instruccion, Consumer<String> alRecibir, Runnable alCancelar) {
         prompts.put(admin.getUniqueId(), new Prompt(alRecibir, alCancelar));
         // cerramos el menu en el proximo tick (no en medio del evento de click)
-        Bukkit.getScheduler().runTask(plugin, admin::closeInventory);
+        Bukkit.getScheduler().runTask(plugin, () -> admin.closeInventory());
         admin.sendMessage(Texto.chat("&6[Editor] &e" + instruccion));
         admin.sendMessage(Texto.chat("&7Escribí &fcancelar &7para cancelar."));
     }
